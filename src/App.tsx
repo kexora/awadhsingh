@@ -1,7 +1,8 @@
+import { lazy, Suspense } from 'react';
 import { MapPin, Phone, Download, Globe, Zap, Cable, GraduationCap, FileText, Briefcase, User, Cpu } from 'lucide-react';
 import { motion, useScroll, useSpring } from 'motion/react';
-import { PDFDownloadLink } from '@react-pdf/renderer';
-import { ResumePDF } from './ResumePDF';
+
+const DownloadResumeButton = lazy(() => import('./DownloadResumeButton'));
 
 // Dynamically detect current website URL (supports localhost, dev preview, and custom domains)
 const getCurrentUrl = () => {
@@ -181,22 +182,20 @@ export default function App() {
               </h2>
             </div>
             
-            <PDFDownloadLink
-              document={<ResumePDF data={portfolioData} websiteUrl={getCurrentUrl()} />}
-              fileName="Awadh_Kishore_Singh_Resume.pdf"
-              className="hidden md:inline-flex items-center justify-center gap-2 bg-[#1e3a8a] text-white px-5 py-2.5 rounded hover:bg-blue-800 transition-colors shadow-sm text-sm font-medium print:hidden shrink-0 cursor-pointer"
-            >
-              {({ loading }) =>
-                loading ? (
-                  'Generating PDF...'
-                ) : (
-                  <>
-                    <Download className="w-4 h-4" />
-                    Download PDF
-                  </>
-                )
+            <Suspense
+              fallback={
+                <span className="hidden md:inline-flex items-center justify-center gap-2 bg-[#1e3a8a] text-white px-5 py-2.5 rounded shadow-sm text-sm font-medium print:hidden shrink-0 opacity-80">
+                  <Download className="w-4 h-4" />
+                  Preparing PDF...
+                </span>
               }
-            </PDFDownloadLink>
+            >
+              <DownloadResumeButton
+                data={portfolioData}
+                websiteUrl={getCurrentUrl()}
+                variant="desktop"
+              />
+            </Suspense>
           </div>
           
           <div className="contact-bar flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-3 sm:gap-x-4 sm:gap-y-2 text-slate-700 text-[14px] md:text-sm font-medium w-full">
@@ -221,22 +220,20 @@ export default function App() {
           </div>
 
           <div className="mt-7 md:hidden print:hidden">
-            <PDFDownloadLink
-              document={<ResumePDF data={portfolioData} websiteUrl={getCurrentUrl()} />}
-              fileName="Awadh_Kishore_Singh_Resume.pdf"
-              className="inline-flex w-full items-center justify-center gap-2.5 bg-[#1e3a8a]/5 text-[#1e3a8a] border border-[#1e3a8a]/20 px-5 py-3.5 rounded-xl active:bg-[#1e3a8a]/10 transition-colors text-[14px] font-bold cursor-pointer"
-            >
-              {({ loading }) =>
-                loading ? (
-                  'Generating PDF...'
-                ) : (
-                  <>
-                    <Download className="w-[18px] h-[18px]" />
-                    Download Resume (PDF)
-                  </>
-                )
+            <Suspense
+              fallback={
+                <span className="inline-flex w-full items-center justify-center gap-2.5 bg-[#1e3a8a]/5 text-[#1e3a8a] border border-[#1e3a8a]/20 px-5 py-3.5 rounded-xl text-[14px] font-bold opacity-80">
+                  <Download className="w-[18px] h-[18px]" />
+                  Preparing Resume (PDF)...
+                </span>
               }
-            </PDFDownloadLink>
+            >
+              <DownloadResumeButton
+                data={portfolioData}
+                websiteUrl={getCurrentUrl()}
+                variant="mobile"
+              />
+            </Suspense>
           </div>
         </motion.header>
 
