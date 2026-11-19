@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - master
   workflow_dispatch:
 
 permissions:
@@ -26,16 +27,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "npm"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Build production bundle
         run: npm run build
 
-      - name: Add SPA 404 fallback
-        run: cp dist/index.html dist/404.html
+      - name: Add SPA 404 fallback and GitHub Pages files
+        run: |
+          cp dist/index.html dist/404.html
+          touch dist/.nojekyll
+          if [ ! -f dist/CNAME ]; then echo "awadhsingh.kexora.in" > dist/CNAME; fi
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5

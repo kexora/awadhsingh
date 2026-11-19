@@ -15,16 +15,7 @@ export default defineConfig(() => {
     build: {
       outDir: 'dist',
       sourcemap: false,
-      chunkSizeWarningLimit: 1200,
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            'react-vendor': ['react', 'react-dom'],
-            'motion-vendor': ['motion'],
-            'pdf-vendor': ['@react-pdf/renderer', 'qrcode'],
-          },
-        },
-      },
+      chunkSizeWarningLimit: 1500,
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
