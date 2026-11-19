@@ -2,8 +2,31 @@ import { useEffect, useState, useMemo } from 'react';
 import { Document, Page, Text, View, StyleSheet, Svg, Circle, Path, Link, Image, Rect, Polyline, Line } from '@react-pdf/renderer';
 import QRCode from 'qrcode';
 
+export interface PortfolioExperience {
+  company: string;
+  date: string;
+  location: string;
+  role: string;
+  bullets: string[];
+}
+
+export interface PortfolioData {
+  name: string;
+  role: string;
+  location: string;
+  phone: string;
+  summary: string;
+  skills: {
+    power: string[];
+    wiring: string[];
+  };
+  experience: PortfolioExperience[];
+  education: string[];
+  details: string[];
+}
+
 interface ResumePDFProps {
-  data: any;
+  data: PortfolioData;
   websiteUrl?: string;
 }
 
@@ -239,21 +262,6 @@ const Icons = {
       <Rect x="2" y="7" width="20" height="14" rx="2" fill="none" stroke="#2563eb" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
       <Path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" fill="none" stroke="#2563eb" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
       <Path d="M12 12v3M9 12h6" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </Svg>
-  ),
-  Building: ({ s = 1 }: { s?: number }) => (
-    <Svg width={12 * s} height={12 * s} viewBox="0 0 24 24">
-      <Rect x="4" y="2" width="16" height="20" rx="2" ry="2" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <Path d="M9 22v-4h6v4" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <Path d="M8 6h.01" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <Path d="M16 6h.01" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <Path d="M12 6h.01" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <Path d="M12 10h.01" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <Path d="M12 14h.01" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <Path d="M16 10h.01" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <Path d="M16 14h.01" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <Path d="M8 10h.01" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <Path d="M8 14h.01" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </Svg>
   ),
   Education: ({ s = 1 }: { s?: number }) => (

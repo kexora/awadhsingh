@@ -36,6 +36,7 @@ jobs:
 
       - name: Add SPA 404 fallback and GitHub Pages files
         run: |
+          rm -f dist/_redirects
           cp dist/index.html dist/404.html
           touch dist/.nojekyll
           if [ ! -f dist/CNAME ]; then echo "awadhsingh.kexora.in" > dist/CNAME; fi

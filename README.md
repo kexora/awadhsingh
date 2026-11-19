@@ -19,6 +19,14 @@ Static React + Vite portfolio optimized for **GitHub Pages** (`https://awadhsing
 
 After DNS propagates, enable **Enforce HTTPS** in **Settings → Pages**.
 
+## Old Netlify Site (`awadhsingh.netlify.app`) 301 Redirect & Search Console Migration
+
+`netlify.toml` is configured with forced **HTTP 301 Permanent Redirects** (`force = true`) from `http(s)://awadhsingh.netlify.app/*` to `https://awadhsingh.kexora.in/:splat`.
+
+- GitHub Pages ignores `netlify.toml`, so both can live safely in the same repository.
+- If your old Netlify site is linked to this GitHub repo, pushing updates will automatically activate the 301 redirect.
+- Once active, open **Google Search Console → `https://awadhsingh.netlify.app` → Settings → Change of address** and select `https://awadhsingh.kexora.in`.
+
 ## Local Development
 
 ```bash

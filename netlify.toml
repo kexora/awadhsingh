@@ -1,0 +1,20 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Permanent 301 redirect from old Netlify domain to new GitHub Pages custom domain
+# Required for automatic user redirection and Google Search Console Change of Address
+[[redirects]]
+  from = "https://awadhsingh.netlify.app/*"
+  to = "https://awadhsingh.kexora.in/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://awadhsingh.netlify.app/*"
+  to = "https://awadhsingh.kexora.in/:splat"
+  status = 301
+  force = true

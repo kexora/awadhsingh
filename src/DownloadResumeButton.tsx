@@ -1,9 +1,9 @@
 import { Download } from 'lucide-react';
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import { ResumePDF } from './ResumePDF';
+import { ResumePDF, type PortfolioData } from './ResumePDF';
 
 interface DownloadResumeButtonProps {
-  data: any;
+  data: PortfolioData;
   websiteUrl: string;
   variant: 'desktop' | 'mobile';
 }
