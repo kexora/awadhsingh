@@ -157,13 +157,13 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-800 selection:bg-blue-900 selection:text-white pb-1 md:pb-2 overflow-x-hidden">
+    <div className="min-h-screen w-full max-w-full bg-white font-sans text-slate-800 selection:bg-blue-900 selection:text-white pb-1 md:pb-2 overflow-x-clip">
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-blue-800 origin-left z-50 print:hidden"
         style={{ scaleX }}
       />
       
-      <main id="resume-content" className="max-w-[850px] mx-auto px-5 sm:px-6 pt-6 pb-2 md:pt-12 md:pb-2">
+      <main id="resume-content" className="w-full max-w-[850px] mx-auto px-4 sm:px-6 pt-6 pb-2 md:pt-12 md:pb-2">
         
         <motion.header 
           className="mb-8 md:mb-10"
@@ -173,11 +173,11 @@ export default function App() {
           variants={sectionVariants}
         >
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-5 md:mb-4">
-            <div>
-              <h1 className="text-2xl sm:text-3xl md:text-[34px] font-bold tracking-tight text-[#1e3a8a] uppercase mb-1.5 md:mb-1 leading-tight">
+            <div className="min-w-0">
+              <h1 className="text-2xl sm:text-3xl md:text-[34px] font-bold tracking-tight text-[#1e3a8a] uppercase mb-1.5 md:mb-1 leading-tight break-words">
                 {portfolioData.name}
               </h1>
-              <h2 className="text-[15px] sm:text-lg md:text-xl text-[#2563eb] font-semibold uppercase tracking-wide">
+              <h2 className="text-[15px] sm:text-lg md:text-xl text-[#2563eb] font-semibold uppercase tracking-wide break-words">
                 {portfolioData.role}
               </h2>
             </div>
@@ -266,10 +266,10 @@ export default function App() {
           </h3>
           
           <div className="grid md:grid-cols-2 gap-x-8 gap-y-4">
-            <div>
+            <div className="min-w-0">
               <h4 className="text-[14.5px] font-bold text-[#2563eb] mb-2 flex items-center gap-1.5">
-                <Zap className="w-4 h-4 text-amber-500" />
-                Power Distribution & High Voltage
+                <Zap className="w-4 h-4 text-amber-500 shrink-0" />
+                <span>Power Distribution & High Voltage</span>
               </h4>
               <ul className="space-y-1.5">
                 {portfolioData.skills.power.map((skill, index) => (
@@ -281,10 +281,10 @@ export default function App() {
               </ul>
             </div>
 
-            <div>
+            <div className="min-w-0">
               <h4 className="text-[14.5px] font-bold text-[#2563eb] mb-2 flex items-center gap-1.5">
-                <Cable className="w-4 h-4 text-slate-600" />
-                Wiring & Auxiliary Systems
+                <Cable className="w-4 h-4 text-slate-600 shrink-0" />
+                <span>Wiring & Auxiliary Systems</span>
               </h4>
               <ul className="space-y-1.5">
                 {portfolioData.skills.wiring.map((skill, index) => (
@@ -337,12 +337,12 @@ export default function App() {
                 />
                 
                 <div className="timeline-header flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-0.5">
-                  <div className="text-[15px]">
+                  <div className="text-[15px] min-w-0 break-words">
                     <span className="font-bold text-slate-900">{exp.role}</span>
                     <span className="text-slate-500 mx-1.5">—</span>
                     <span className="text-[#2563eb] font-semibold">{exp.company}</span>
                   </div>
-                  <span className="timeline-date text-slate-500 font-medium text-[13px] whitespace-nowrap">{exp.date}</span>
+                  <span className="timeline-date text-slate-500 font-medium text-[13px] shrink-0">{exp.date}</span>
                 </div>
                 
                 <div className="text-slate-500 text-[13px] mb-2 italic">
@@ -384,10 +384,10 @@ export default function App() {
           variants={sectionVariants}
         >
           <div className="grid md:grid-cols-2 gap-x-8 gap-y-6">
-            <div>
+            <div className="min-w-0">
               <h3 className="text-base font-bold text-[#1e3a8a] uppercase tracking-wider mb-3 border-b-2 border-[#1e3a8a] pb-1.5 flex items-center gap-2">
-                <GraduationCap className="w-5 h-5 text-[#2563eb]" />
-                Education & Training
+                <GraduationCap className="w-5 h-5 text-[#2563eb] shrink-0" />
+                <span>Education & Training</span>
               </h3>
               <ul className="space-y-1.5">
                 {portfolioData.education.map((item, index) => {
@@ -413,10 +413,10 @@ export default function App() {
               </ul>
             </div>
             
-            <div>
+            <div className="min-w-0">
               <h3 className="text-base font-bold text-[#1e3a8a] uppercase tracking-wider mb-3 border-b-2 border-[#1e3a8a] pb-1.5 flex items-center gap-2">
-                <FileText className="w-5 h-5 text-[#2563eb]" />
-                Additional Details
+                <FileText className="w-5 h-5 text-[#2563eb] shrink-0" />
+                <span>Additional Details</span>
               </h3>
               <ul className="space-y-1.5">
                 {portfolioData.details.map((item, index) => {
